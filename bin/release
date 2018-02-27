@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# bin/release <build-dir>
+
+BUILD_DIR=$1
+
+if [ ! -f $BUILD_DIR/Procfile ]; then
+  cd $BUILD_DIR
+  for jarFile in $(find ./target -maxdepth 1 -name "*.jar" -type f); do
+    echo "default_process_types:"
+    echo "  web: java \$JAVA_OPTS -jar $jarFile --server.port=\$PORT "
+    break;
+  done
+fi

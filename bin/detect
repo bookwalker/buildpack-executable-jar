@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# bin/detect <build-dir>
+set -eo pipefail; [[ $TRACE ]] && set -x
+
+BUILD_DIR=$1
+
+cd $BUILD_DIR
+JAR_FILE=$(find ./target -maxdepth 1 -name "*.jar" -type f)
+
+if [[ -z $JAR_FILE ]]; then
+  (>&2 echo "no *.jar file in directory target/ found!")
+  exit 1
+else
+  echo "java archive $JAR_FILE found"
+  exit 0
+fi
