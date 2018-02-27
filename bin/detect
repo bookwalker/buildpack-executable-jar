@@ -11,6 +11,6 @@ if [[ -z $JAR_FILE ]]; then
   (>&2 echo "no *.jar file in directory target/ found!")
   exit 1
 else
-  echo "java archive $JAR_FILE found"
+  echo "executable jar"
   exit 0
 fi
